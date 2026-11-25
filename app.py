@@ -33,7 +33,7 @@ class Handler(BaseHTTPRequestHandler):
         self.send_data(status,json.dumps(obj).encode())
     def do_GET(self):
         if not self.allowed(): return self.reply(403,{"error":"Use local address"})
-        assets={"/":("index.html","text/html"),"/style.css":("style.css","text/css"),"/app.js":("app.js","text/javascript")}
+        assets={"/":("index.html","text/html"),"/style.css":("style.css","text/css"),"/app.js":("app.js","text/javascript"),"/analysis.js":("analysis.js","text/javascript"),"/analysis-worker.js":("analysis-worker.js","text/javascript")}
         if self.path in assets:
             name,mime=assets[self.path]
             return self.send_data(200,(ROOT/"web"/name).read_bytes(),mime)

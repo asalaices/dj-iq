@@ -1,0 +1,12 @@
+const assert=require("node:assert/strict");
+const {analyze,matchRate,phaseSeek}=require("../web/analysis.js");
+const rate=10000,samples=new Float32Array(rate*20);
+for(let i=0;i<samples.length;i+=rate/2)for(let j=0;j<100;j++)samples[i+j]=Math.sin(j*.2)*.8;
+const a=analyze(samples,rate);
+assert.ok(Math.abs(a.bpm-120)<1 || Math.abs(a.bpm-120/2)<1,JSON.stringify({bpm:a.bpm}));
+assert.equal(a.peaks.length,720);
+assert.equal(analyze(new Float32Array(rate*10),rate).bpm,null);
+assert.equal(matchRate(126,120),1.05);
+assert.throws(()=>matchRate(180,90));
+assert.ok(Math.abs(phaseSeek(1.25,120,0,1,120,0)-1.25)<1e-8);
+console.log("Signal analysis tests passed");
