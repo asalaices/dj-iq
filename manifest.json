@@ -1,0 +1,21 @@
+{
+  "name": "DJ-IQ",
+  "version": "0.1.0",
+  "license": "GPL-3.0",
+  "python_min": "3.11",
+  "port": 8765,
+  "dependencies": [],
+  "providers": [
+    "offline",
+    "ollama",
+    "remote-ollama",
+    "anthropic",
+    "openai-compatible"
+  ],
+  "pending": [
+    "copilot",
+    "native-audio",
+    "pkg",
+    "updater"
+  ]
+}
